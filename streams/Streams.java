@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Streams {
@@ -29,16 +30,47 @@ public class Streams {
         long count = arr2.stream().distinct().count();
         System.out.println(count);
 
-        System.out.println("--------------------");
+        System.out.println("---------ITERATION-----------");
 
         // iterating with streams focus on operation logic rather than on iteration over the elements
 
         boolean exists = arr2.stream().anyMatch(s -> s.equals("A"));
         System.out.println(exists);
-
+        // allMatch() - returns true if all elements in the stream match the predicate
         List<String> arr3 = Arrays.asList("Juaheiu", "1737813A", "Vfahf3", "A3afgh");
-        Stream<String> filtered3 = arr3.stream().filter(s -> s.contains("A"));
+        boolean allMatch = arr3.stream().allMatch(s -> s.contains("A"));
+        System.out.println(allMatch);
+        // noneMatch() - returns true if no elements in the stream match the predicate
+        boolean noneMatch = arr3.stream().noneMatch(s -> s.contains("A"));
+        System.out.println(noneMatch);
+
+        List<String> arr4 = Arrays.asList("Juaheiu", "1737813A", "Vfahf3", "A3afgh");
+        Stream<String> filtered3 = arr4.stream().filter(s -> s.contains("A"));
         filtered3.forEach(System.out::println);
 
+        System.out.println("----------MAP----------");
+
+        // mapping - convert elements of a stream to another object
+        List<String> arr5 = Arrays.asList("123123", "321232", "12314335", "3434334");
+        Stream<Integer> mapped = arr5.stream().map(s -> Integer.parseInt(s));
+        mapped.forEach(System.out::println);
+        
+        System.out.println("-----------REDUCE---------");
+
+        // reduce() - transform a stream into a single value
+        List<Integer> arr6 = Arrays.asList(1, 2, 3, 4, 5);
+        int sum = arr6.stream().reduce(100, (a, b) -> a + b);
+        System.out.println(sum);
+
+        System.out.println("-----------COLLECT---------");
+
+        // collect() - convert a stream into a collection
+        List<String> arr7 = Arrays.asList("a", "b", "c", "d");
+        List<String> result = arr7.stream().map(String::toUpperCase).collect(Collectors.toList());
+        System.out.println(result);
+        // collect can also use custom collectors
+        List<String> arr8 = Arrays.asList("a", "b", "c", "d");
+        String result2 = arr8.stream().collect(Collectors.joining(", "));
+        System.out.println(result2);
     }
 }
