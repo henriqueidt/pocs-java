@@ -1,14 +1,10 @@
 package org.example;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Main {
     public static void main(String[] args) {
-        basicSerialization();
-        basicDeserialization();
-    }
-
-    public static void basicSerialization() {
         User user = new User(
                 "John Doe",
                 "johndoe@test.com",
@@ -16,8 +12,24 @@ public class Main {
                 true
         );
 
+        basicSerialization(user);
+        basicDeserialization();
+        serializationChangingAField(user);
+    }
+
+    public static void basicSerialization(User user) {
+        System.out.println("Basic serialization:");
         Gson gson = new Gson();
         String userJson = gson.toJson(user);
+        System.out.println(userJson);
+    }
+
+    public static void serializationChangingAField(User user) {
+        System.out.println("Serialization with custom field:");
+        AddFieldSerializer addFieldSerializer = new AddFieldSerializer();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(User.class, addFieldSerializer);
+        String userJson = gsonBuilder.create().toJson(user);
         System.out.println(userJson);
     }
 
