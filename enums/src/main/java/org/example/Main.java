@@ -32,5 +32,28 @@ public class Main {
         System.out.println("Car brand: " + carBrand.toString());
         // Can also print the enum, which will call toString() behind the scenes
         System.out.println(Car.FORD);
+
+        // Get the name of the enum constant
+        System.out.println("Car name: " + carBrand.getCarName());
+
+        // ordinal() returns the position of the enum
+        System.out.println("Car ordinal: " + carBrand.ordinal());
+
+        // compareTo() compares the order(ORDINAL) of two enum constants
+        System.out.println("Comparing BMW to AUDI: " + carBrand.compareTo(Car.AUDI));
+
+        // name() returns the name of the enum constant as a String
+        System.out.println("Car name using name(): " + carBrand.name());
+
+        // valueOf() converts a String to the corresponding enum constant
+        Car carFromString = Car.valueOf("HONDA");
+        System.out.println("Car from String: " + carFromString);
+
+        // values() returns an array of all enum constants
+        Car[] allCars = Car.values();
+        System.out.println("All car brands:");
+        for (Car c : allCars) {
+            System.out.println(c);
+        }
     }
 }
