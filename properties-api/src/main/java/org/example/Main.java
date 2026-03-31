@@ -10,7 +10,12 @@ import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) {
-           
+        propsManipulation();
+
+        propsWithFiles();
+    }
+
+    private static void propsManipulation() {
         // Creating Properties
         Properties props = new Properties();
 
@@ -18,22 +23,21 @@ public class Main {
         Properties defaults = new Properties();
         defaults.setProperty("animal", "dog");
 
-
         // we can extend default properties
         Properties props1 = new Properties(defaults);
         props1.setProperty("name", "bruce");
-
 
         // Reading values:
         String animal = props1.getProperty("animal");
         System.out.println(animal);
 
-
         // Iterate over properties
-        for(String key : props1.stringPropertyNames()) {
+        for (String key : props1.stringPropertyNames()) {
             System.out.println(key + " = " + props1.getProperty(key));
         }
+    }
 
+    private static void propsWithFiles() {
         System.out.println("------------------------");
 
         // Reading from a .properties file
