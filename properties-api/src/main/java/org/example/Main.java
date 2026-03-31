@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -75,5 +76,17 @@ public class Main {
         System.out.println("Config from XML:");
         System.out.println(xmlConfig.getProperty("host"));
         System.out.println(xmlConfig.getProperty("port"));
+
+
+        // Writing properties to a .properties file
+        // If file exists, it will override content
+        // A comment will be auto added with timestamp
+        config.setProperty("breed", "sheah-tzu");
+        try (FileWriter writer = new FileWriter("src/main/resources/config.properties")) {
+            config.store(writer, "Config from code");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 }
