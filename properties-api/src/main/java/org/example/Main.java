@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,5 +60,20 @@ public class Main {
         System.out.println("Config from filesystem:");
         System.out.println(config.getProperty("app.name"));
         System.out.println(config.getProperty("db.host"));
+
+        System.out.println("------------------------");
+
+
+        // Loading properties from xml file
+        Properties xmlConfig = new Properties();
+        try (InputStream in = new FileInputStream("src/main/resources/config.xml")) {
+            xmlConfig.loadFromXML(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Config from XML:");
+        System.out.println(xmlConfig.getProperty("host"));
+        System.out.println(xmlConfig.getProperty("port"));
     }
 }
