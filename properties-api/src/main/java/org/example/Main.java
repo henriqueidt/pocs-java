@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -79,14 +80,21 @@ public class Main {
 
 
         // Writing properties to a .properties file
-        // If file exists, it will override content
+        // If file exists, it will override equal keys and comments
         // A comment will be auto added with timestamp
-        config.setProperty("breed", "sheah-tzu");
+        config.setProperty("db.name", "local");
         try (FileWriter writer = new FileWriter("src/main/resources/config.properties")) {
             config.store(writer, "Config from code");
         } catch (IOException e) {
             e.printStackTrace();
         }
         
+
+        // Writing properties to .xml file
+        try (FileOutputStream out = new FileOutputStream("src/main/resources/config.xml")) {
+            config.storeToXML(out, "XML Config from code", "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
