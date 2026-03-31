@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -30,6 +31,7 @@ public class Main {
             System.out.println(key + " = " + props1.getProperty(key));
         }
 
+        System.out.println("------------------------");
 
         // Reading from a .properties file
         // Properties files are usually used to store configs like app and host
@@ -40,6 +42,21 @@ public class Main {
             e.printStackTrace();
         }
 
+        System.out.println("Config from classpath:");
+        System.out.println(config.getProperty("app.name"));
+        System.out.println(config.getProperty("db.host"));
+
+        System.out.println("------------------------");
+
+        // Loading properties from filesystem
+        Properties fsConfig = new Properties();
+        try (FileReader reader = new FileReader("src/main/resources/config.properties")) {
+            fsConfig.load(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Config from filesystem:");
         System.out.println(config.getProperty("app.name"));
         System.out.println(config.getProperty("db.host"));
     }
