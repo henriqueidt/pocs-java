@@ -13,6 +13,8 @@ public class Main {
         propsManipulation();
 
         propsWithFiles();
+
+        systemProps();
     }
 
     private static void propsManipulation() {
@@ -99,6 +101,19 @@ public class Main {
             config.storeToXML(out, "XML Config from code", "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void systemProps() {
+        // The JVM have some pre-populated Properties
+
+        System.out.println("-----------------------");
+
+        // Get all system properties
+        System.out.println("Get all system properties:");
+        Properties sysProperties = System.getProperties();
+        for (String key : sysProperties.stringPropertyNames()) {
+            System.out.println(key + " = " + sysProperties.getProperty(key));
         }
     }
 }
