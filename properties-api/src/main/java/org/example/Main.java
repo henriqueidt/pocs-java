@@ -115,5 +115,18 @@ public class Main {
         for (String key : sysProperties.stringPropertyNames()) {
             System.out.println(key + " = " + sysProperties.getProperty(key));
         }
+
+        System.out.println("-----------------------");
+
+        // We can also read with a default value
+        String sysDefaultProp = System.getProperty("custom.key", "defaultvalue");
+        System.out.println(sysDefaultProp);
+
+        System.out.println("-----------------------");
+
+        // Set a system prop at runtime
+        System.setProperty("customProp", "customValue");
+        System.out.println(System.getProperty("customProp"));
+
     }
 }
