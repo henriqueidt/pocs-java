@@ -5,5 +5,5 @@ package org.example;
 
 @FunctionalInterface
 public interface ExampleI {
-  void show();
+  void show(int i);
 }
