@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 
 public class Main {
@@ -41,5 +42,16 @@ public class Main {
         // The final result is the same here, but we're concating the string before calculating length
         Function <String, Integer> concatString = wordSize.compose(n -> n.concat(n));
         System.out.println(concatString.apply("john"));
+
+
+        // Predicate - test
+        // Built-in predicates
+        Predicate<String> isEmpty = String::isEmpty;
+        // Custom predicates
+        Predicate<String> isLong = s -> s.length() > 10;
+
+        // Composed predicates
+        Predicate<String> isNotEmptyAndLong = isEmpty.negate().and(isLong);
+        System.out.println(isNotEmptyAndLong.test("a long string will be true"));
     }
 }
