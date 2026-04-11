@@ -3,6 +3,7 @@ package org.example;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 
 public class Main {
@@ -59,5 +60,10 @@ public class Main {
         // Consumer - side effects
         Consumer<String> print = s -> System.out.println(s);
         print.accept("Consumer function");
+
+        // Supplier - generator
+        // Useful for lazy generation of values
+        Supplier<String> erroSupplier = () -> "An error has occurred, try again";
+        System.out.println(erroSupplier.get());
     }
 }
