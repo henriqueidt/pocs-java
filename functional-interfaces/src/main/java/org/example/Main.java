@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -53,5 +54,10 @@ public class Main {
         // Composed predicates
         Predicate<String> isNotEmptyAndLong = isEmpty.negate().and(isLong);
         System.out.println(isNotEmptyAndLong.test("a long string will be true"));
+
+
+        // Consumer - side effects
+        Consumer<String> print = s -> System.out.println(s);
+        print.accept("Consumer function");
     }
 }
