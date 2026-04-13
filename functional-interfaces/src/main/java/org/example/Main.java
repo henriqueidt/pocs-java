@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -65,5 +68,16 @@ public class Main {
         // Useful for lazy generation of values
         Supplier<String> erroSupplier = () -> "An error has occurred, try again";
         System.out.println(erroSupplier.get());
+
+        // BiFunction, BiConsumer, BiPredicate - tw-arguments
+        BiFunction<String, Integer, String> multiplyWord = (s, n) -> s.repeat(n);
+        System.out.println(multiplyWord.apply("World", 22));
+
+        BiConsumer<String, String> logDataBiConsumer = (date, id) -> System.out.println(id + " updated at " + date);
+        logDataBiConsumer.accept("22/02/2026", "234238");
+
+        BiPredicate<String, String> compareStrings = (s1, s2) -> s1.compareTo(s2) > 0;
+        System.out.println(compareStrings.test("john", "ana"));
+
     }
 }
