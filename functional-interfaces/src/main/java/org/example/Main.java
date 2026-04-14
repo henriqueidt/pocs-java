@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -88,6 +89,22 @@ public class Main {
         
         BinaryOperator<Integer> multiply = (a, b) -> a * b;
 
-        
+
+        // Static method
+        Function<String, Integer> parseToInt = Integer::parseInt;
+        System.out.println(12 + parseToInt.apply("10"));
+
+        // Instance method
+        String prefix = "Mr. ";
+        UnaryOperator<String> addPrefix = prefix::concat;
+        System.out.println("Welcome " + addPrefix.apply("Jones"));
+
+        // Constructor reference
+        Supplier<ArrayList<String>> listFactory = ArrayList::new;
+        ArrayList<String> list1 = listFactory.get();
+        list1.add("john");
+        list1.add("lucas");
+        System.out.println(list1);
+
     }
 }
