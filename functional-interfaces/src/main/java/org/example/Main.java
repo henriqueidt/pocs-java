@@ -3,10 +3,12 @@ package org.example;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 
 public class Main {
@@ -79,5 +81,13 @@ public class Main {
         BiPredicate<String, String> compareStrings = (s1, s2) -> s1.compareTo(s2) > 0;
         System.out.println(compareStrings.test("john", "ana"));
 
+
+        // Unary/Binary Operator - Input/output types match
+        UnaryOperator<String> toUpper = s -> s.toUpperCase();
+        System.out.println(toUpper.apply("this should be uppercase"));
+        
+        BinaryOperator<Integer> multiply = (a, b) -> a * b;
+
+        
     }
 }
