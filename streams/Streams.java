@@ -72,5 +72,13 @@ public class Streams {
         List<String> arr8 = Arrays.asList("a", "b", "c", "d");
         String result2 = arr8.stream().collect(Collectors.joining(", "));
         System.out.println(result2);
+
+        System.out.println("-----------FLATMAP---------");
+
+        // flatMap() - transforms each element into a stream and flat all streams into one
+        List<List<Integer>> nestedList = Arrays.asList(Arrays.asList(1,2,3), Arrays.asList(4,5,6));
+        System.out.println(nestedList);
+        List<Integer> flatIntegers = nestedList.stream().flatMap(List::stream).collect(Collectors.toList());
+        System.out.println(flatIntegers);
     }
 }
