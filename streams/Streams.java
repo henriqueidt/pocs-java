@@ -91,14 +91,24 @@ public class Streams {
         names.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
 
 
-        System.out.println("-----------LIMIT / SKIP ---------");
+        System.out.println("----------- LIMIT / SKIP ---------");
 
         // limit() - keeps only first N elements
         // skip() - discards first N elements
         Stream.of(1, 2, 3, 4, 5).limit(3).forEach(System.out::println);
         Stream.of(1, 2, 3, 4, 5).skip(3).forEach(System.out::println);
 
-        
+        System.out.println("-----------PEAK---------");
 
+        // peak() - similar to forEach, but only for debug, should not be used for sideeffecs
+        List<Integer> peakResult = Stream.of(1, 2, 3)
+            .peek(n -> System.out.println("before: " + n))
+            .map(n -> n * 2)
+            .peek(n -> System.out.println("after: " + n))
+            .collect(Collectors.toList());
+        System.out.println(peakResult);
+
+
+        
     }
 }
