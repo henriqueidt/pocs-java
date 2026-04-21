@@ -109,6 +109,13 @@ public class Streams {
         System.out.println(peakResult);
 
 
-        
+        System.out.println("-----------MAPPINGS---------");
+
+        // mapToInt() - converts the Stream<T> into a primitive (IntStream)
+        List<String> words = Arrays.asList("hello", "world", "now");
+        int totalLength = words.stream()
+            .mapToInt(String::length)
+            .sum();
+        System.out.println(totalLength);
     }
 }
