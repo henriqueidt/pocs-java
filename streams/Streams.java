@@ -82,13 +82,21 @@ public class Streams {
         List<Integer> flatIntegers = nestedList.stream().flatMap(List::stream).collect(Collectors.toList());
         System.out.println(flatIntegers);
 
-        System.out.println("-----------FLATMAP---------");
+        System.out.println("-----------SORTED---------");
 
         // sorted() - returns a new stream with elements sorted
         List<String> names = Arrays.asList("John", "Arya", "Sansa");
         names.stream().sorted().forEach(System.out::println);
         // with comparator
         names.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+
+
+        System.out.println("-----------LIMIT / SKIP ---------");
+
+        // limit() - keeps only first N elements
+        // skip() - discards first N elements
+        Stream.of(1, 2, 3, 4, 5).limit(3).forEach(System.out::println);
+        Stream.of(1, 2, 3, 4, 5).skip(3).forEach(System.out::println);
 
         
 
