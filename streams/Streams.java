@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -80,5 +81,16 @@ public class Streams {
         System.out.println(nestedList);
         List<Integer> flatIntegers = nestedList.stream().flatMap(List::stream).collect(Collectors.toList());
         System.out.println(flatIntegers);
+
+        System.out.println("-----------FLATMAP---------");
+
+        // sorted() - returns a new stream with elements sorted
+        List<String> names = Arrays.asList("John", "Arya", "Sansa");
+        names.stream().sorted().forEach(System.out::println);
+        // with comparator
+        names.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+
+        
+
     }
 }
