@@ -1,5 +1,8 @@
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorServicePoc {
@@ -15,6 +18,24 @@ public class ExecutorServicePoc {
                 System.out.println("Task " + taskId + " running on " + Thread.currentThread().getName());
             });
         }
+
+
+        // Callables<T> are runnable thread tasks that return values
+        // Future<T> are handlers for results that aren't yet ready and can be executed later with .get()
+        // Calling .get() blocks until the task finishes
+        Callable<Integer> task1 = () -> {
+            Thread.sleep(100);
+            return 100;
+        };
+
+        Future<Integer> future1 = pool.submit(task1);
+
+        try {
+            System.out.println(future1.get());
+        } catch (ExecutionException ex) {
+            System.getLogger(ExecutorServicePoc.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
 
         pool.shutdown();
         pool.awaitTermination(5, TimeUnit.SECONDS);
