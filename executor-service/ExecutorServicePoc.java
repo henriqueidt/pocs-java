@@ -52,8 +52,14 @@ public class ExecutorServicePoc {
             System.out.println(f.get());
         }
 
+        // invokeAny - submits all tasks and returns the result of the first tha finishes
+        List<Callable<String>> invokeAllTasks = Arrays.asList(
+            () -> { Thread.sleep(200); return "slow task"; },
+            () -> { Thread.sleep(50);  return "fast task"; }
+        );
         
-
+        String winner = pool.invokeAny(invokeAllTasks);
+        System.out.println("Winner is: " + winner);
 
 
         pool.shutdown();
