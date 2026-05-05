@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -6,7 +8,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorServicePoc {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         // The ExecutorService is a high-level API that manages a `pool of threads`
         // When submitting tasks, it decides which thread to run them in
@@ -35,6 +37,23 @@ public class ExecutorServicePoc {
         } catch (ExecutionException ex) {
             System.getLogger(ExecutorServicePoc.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+
+
+        // invokeAll - submitts all tasks and blocks until they're all finished
+        List<Callable<String>> tasksList = Arrays.asList(
+            () -> "result 1",
+            () -> "result 2",
+            () -> "result 3"
+        );
+
+        List<Future<String>> tasksListResults = pool.invokeAll(tasksList);
+        System.out.println("INVOKE ALL");
+        for (Future<String> f : tasksListResults) {
+            System.out.println(f.get());
+        }
+
+        
+
 
 
         pool.shutdown();
